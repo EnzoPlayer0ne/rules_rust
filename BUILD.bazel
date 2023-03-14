@@ -13,6 +13,7 @@ load(
     "output_diagnostics",
 )
 
+
 exports_files(["LICENSE"])
 
 bzl_library(
@@ -92,6 +93,15 @@ extra_exec_rustc_flags(
 extra_exec_rustc_flag(
     name = "extra_exec_rustc_flag",
     build_setting_default = "",
+    visibility = ["//visibility:public"],
+)
+
+# This setting may be used to override the prefix for source paths rustc embeds into build artifacts.
+# Setting this setting to a fixed value (e.g., "/source/") can help achieve reproducible builds and
+# improve cache utilization.
+source_path_prefix(
+    name = "source_path_prefix",
+    build_setting_default = ".",
     visibility = ["//visibility:public"],
 )
 
